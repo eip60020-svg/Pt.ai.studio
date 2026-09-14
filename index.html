@@ -1,4 +1,5 @@
-<!DOCTYPE html> 
+
+<!DOCTYPE html>
 <html lang="my">
 <head>
 <meta charset="UTF-8">
@@ -10,34 +11,33 @@
   box-sizing:border-box;
   margin:0;
   padding:0;
+  font-family:Arial,"Noto Sans Myanmar",sans-serif;
 }
 
 body{
-  font-family:Arial,sans-serif;
   background:#080b16;
   color:#fff;
   min-height:100vh;
 }
 
 header{
-  padding:22px 18px 15px;
+  padding:24px 18px 18px;
   background:linear-gradient(135deg,#10152b,#080b16);
   border-bottom:1px solid #202744;
 }
 
 .logo{
-  font-size:25px;
+  font-size:26px;
   font-weight:bold;
-  color:#fff;
 }
 
 .logo span{
-  color:#4da3ff;
+  color:#58a6ff;
 }
 
 .subtitle{
-  margin-top:6px;
-  color:#8e9ab8;
+  margin-top:7px;
+  color:#aeb7cc;
   font-size:14px;
 }
 
@@ -63,6 +63,10 @@ header{
   font-size:16px;
 }
 
+.search input::placeholder{
+  color:#8993aa;
+}
+
 .search button{
   width:100%;
   margin-top:12px;
@@ -75,8 +79,22 @@ header{
   background:linear-gradient(90deg,#247cff,#8b4dff);
 }
 
+.search button:active{
+  transform:scale(.98);
+}
+
+.message{
+  display:none;
+  margin-top:12px;
+  padding:12px;
+  background:#18213b;
+  border-radius:10px;
+  color:#b9c7e8;
+  font-size:14px;
+}
+
 h2{
-  font-size:19px;
+  font-size:20px;
   margin:20px 0 13px;
 }
 
@@ -91,7 +109,7 @@ h2{
   border:1px solid #28345b;
   border-radius:17px;
   padding:18px 14px;
-  min-height:145px;
+  min-height:155px;
   cursor:pointer;
   transition:.2s;
 }
@@ -101,62 +119,39 @@ h2{
 }
 
 .icon{
-  width:45px;
-  height:45px;
-  border-radius:13px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:23px;
-  background:linear-gradient(135deg,#267cff,#814cff);
-  margin-bottom:12px;
-}
-
-.card h3{
-  font-size:15px;
-  margin-bottom:6px;
-}
-
-.card p{
-  color:#8995b5;
-  font-size:12px;
-  line-height:1.4;
-}
-
-.projects{
-  margin-top:10px;
-}
-
-.project{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  background:#10162a;
-  border:1px solid #242e50;
-  padding:13px;
-  border-radius:14px;
+  font-size:30px;
   margin-bottom:10px;
 }
 
-.project-icon{
-  width:48px;
-  height:48px;
-  border-radius:11px;
-  background:#1b2850;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:21px;
+.card h3{
+  font-size:16px;
+  margin-bottom:8px;
 }
 
-.project h4{
+.card p{
+  color:#9da8c1;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.result{
+  display:none;
+  margin-top:20px;
+  background:#11172a;
+  border:1px solid #29345b;
+  border-radius:16px;
+  padding:16px;
+}
+
+.result h3{
+  margin-bottom:10px;
+  color:#69a9ff;
+}
+
+.result p{
+  color:#d7dced;
+  line-height:1.6;
   font-size:14px;
-  margin-bottom:4px;
-}
-
-.project span{
-  color:#7f8ba8;
-  font-size:12px;
 }
 
 .bottom{
@@ -164,37 +159,29 @@ h2{
   bottom:0;
   left:0;
   right:0;
-  height:68px;
-  background:#0d1222;
-  border-top:1px solid #252e4c;
+  height:65px;
   display:flex;
   justify-content:space-around;
   align-items:center;
-  z-index:10;
+  background:#0d1120;
+  border-top:1px solid #242d4b;
 }
 
-.nav{
-  color:#7783a1;
-  text-align:center;
-  font-size:11px;
-  cursor:pointer;
+.bottom button{
+  background:none;
+  border:0;
+  color:#aeb7cc;
+  font-size:12px;
 }
 
-.nav.active{
-  color:#4da3ff;
+.bottom .active{
+  color:#69a9ff;
 }
 
-.nav div{
-  font-size:21px;
-  margin-bottom:3px;
-}
-
-.message{
-  margin-top:14px;
-  color:#6fdbff;
-  font-size:14px;
-  text-align:center;
-  display:none;
+@media(max-width:350px){
+  .grid{
+    grid-template-columns:1fr;
+  }
 }
 </style>
 </head>
@@ -203,16 +190,24 @@ h2{
 
 <header>
   <div class="logo">PT <span>& AI</span> Studio</div>
-  <div class="subtitle">AI နဲ့ ဖန်တီးမှုတွေကို လွယ်ကူစွာလုပ်လိုက်ပါ ✨</div>
+  <div class="subtitle">
+    AI နဲ့ ဖန်တီးမှုတွေကို လွယ်ကူစွာလုပ်လိုက်ပါ ✨
+  </div>
 </header>
 
 <div class="container">
 
   <div class="search">
-    <input id="prompt"
+    <input
+      id="prompt"
       type="text"
-      placeholder="AI ကို ဘာလုပ်ခိုင်းချင်လဲ?">
-    <button onclick="generate()">Generate ✨</button>
+      placeholder="AI ကို ဘာလုပ်ခိုင်းချင်လဲ?"
+    >
+
+    <button onclick="generate()">
+      Generate ✨
+    </button>
+
     <div id="message" class="message"></div>
   </div>
 
@@ -223,614 +218,144 @@ h2{
     <div class="card" onclick="openTool('AI Image')">
       <div class="icon">🎨</div>
       <h3>AI Image</h3>
-      <p>စာသားကနေ ပုံလှလှတွေ ဖန်တီးပါ</p>
+      <p>စာနဲ့ဖော်ပြပြီး ပုံဖန်တီးပါ</p>
     </div>
 
     <div class="card" onclick="openTool('Image to Video')">
       <div class="icon">🎬</div>
       <h3>Image to Video</h3>
-      <p>ပုံတွေကို Video အဖြစ် ပြောင်းပါ</p>
+      <p>ပုံတွေကို Video အဖြစ် ဖန်တီးပါ</p>
     </div>
 
-    <div class="card" onclick="openTool('Text to Video')">
-      <div class="icon">📹</div>
-      <h3>Text to Video</h3>
-      <p>စာသားကနေ Video ဖန်တီးပါ</p>
+    <div class="card" onclick="openTool('AI Writer')">
+      <div class="icon">✍️</div>
+      <h3>AI Writer</h3>
+      <p>စာ၊ Caption နဲ့ အကြောင်းအရာတွေ ရေးပါ</p>
     </div>
 
-    <div class="card" onclick="openTool('AI Voice')">
-      <div class="icon">🎙️</div>
-      <h3>AI Voice</h3>
-      <p>AI အသံနဲ့ စကားပြောဖန်တီးပါ</p>
+    <div class="card" onclick="openTool('AI Chat')">
+      <div class="icon">💬</div>
+      <h3>AI Chat</h3>
+      <p>AI နဲ့ စကားပြောပြီး အကူအညီရယူပါ</p>
     </div>
 
-    <div class="card" onclick="openTool('Music & SFX')">
-      <div class="icon">🎵</div>
-      <h3>Music & SFX</h3>
-      <p>Music နဲ့ Sound Effects ဖန်တီးပါ</p>
+    <div class="card" onclick="openTool('Translator')">
+      <div class="icon">🌐</div>
+      <h3>Translator</h3>
+      <p>ဘာသာစကားများကို ဘာသာပြန်ပါ</p>
     </div>
 
-    <div class="card" onclick="openTool('My Projects')">
-      <div class="icon">📁</div>
-      <h3>My Projects</h3>
-      <p>ကိုယ်ဖန်တီးထားတာတွေ ကြည့်ပါ</p>
+    <div class="card" onclick="openTool('Code Helper')">
+      <div class="icon">💻</div>
+      <h3>Code Helper</h3>
+      <p>Code ရေးခြင်းနဲ့ ပြင်ဆင်ခြင်းကို ကူညီပါ</p>
     </div>
 
   </div>
 
-  <h2>Recent Projects</h2>
-
-  <div class="projects">
-
-    <div class="project">
-      <div class="project-icon">🖼️</div>
-      <div>
-        <h4>My AI Image</h4>
-        <span>AI Image Project</span>
-      </div>
-    </div>
-
-    <div class="project">
-      <div class="project-icon">🎥</div>
-      <div>
-        <h4>My Video</h4>
-        <span>Video Project</span>
-      </div>
-    </div>
-
-    <div class="project">
-      <div class="project-icon">🎧</div>
-      <div>
-        <h4>My Music</h4>
-        <span>Music Project</span>
-      </div>
-    </div>
-
+  <div id="result" class="result">
+    <h3>PT & AI Studio</h3>
+    <p id="resultText"></p>
   </div>
 
 </div>
 
 <div class="bottom">
-  <div class="nav active" onclick="home()">
-    <div>⌂</div>
-    Home
-  </div>
-
-  <div class="nav" onclick="newProject()">
-    <div>＋</div>
-    New
-  </div>
-
-  <div class="nav" onclick="openTool('My Projects')">
-    <div>▣</div>
-    Projects
-  </div>
-
-  <div class="nav" onclick="openTool('Settings')">
-    <div>⚙</div>
-    Settings
-  </div>
-</div>
-
-<script>
-function generate(){
-  const input=document.getElementById("prompt");
-  const message=document.getElementById("message");
-
-  if(input.value.trim()===""){
-    message.innerText="AI ကိုလုပ်ခိုင်းချင်တာ ရိုက်ထည့်ပါ ✨";
-  }else{
-    message.innerText="✨ Generate လုပ်ဖို့ အဆင်သင့်ပါပြီ — "+input.value;
-  }
-
-  message.style.display="block";
-}
-
-function openTool(name){
-  alert(name+" ကို ဖွင့်နေပါတယ် ✨");
-}
-
-function newProject(){
-  document.getElementById("prompt").focus();
-}
-
-function home(){
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-}
-</script>
-
-</body>
-</html>
-<meta  
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PT & AI Studio</title>
-
-<style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:Arial,"Noto Sans Myanmar",sans-serif;
-}
-
-body{
-  background:#030719;
-  color:white;
-  min-height:100vh;
-  overflow-x:hidden;
-}
-
-.container{
-  width:100%;
-  max-width:1100px;
-  margin:auto;
-  padding:18px;
-}
-
-/* Header */
-.header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:10px 0 20px;
-}
-
-.menu{
-  font-size:32px;
-  color:#b89cff;
-}
-
-.logo{
-  text-align:center;
-  flex:1;
-}
-
-.logo h1{
-  font-size:34px;
-  font-weight:900;
-  background:linear-gradient(90deg,#00eaff,#9d35ff,#ff35e9);
-  -webkit-background-clip:text;
-  color:transparent;
-}
-
-.logo p{
-  color:#eee;
-  margin-top:4px;
-  font-size:14px;
-}
-
-.vip,.profile{
-  font-size:28px;
-  margin-left:10px;
-}
-
-/* Search */
-.search{
-  border:3px solid #00eaff;
-  border-radius:45px;
-  padding:10px;
-  display:flex;
-  align-items:center;
-  box-shadow:0 0 20px #00eaff55;
-  margin-bottom:18px;
-}
-
-.search input{
-  flex:1;
-  background:transparent;
-  border:0;
-  outline:none;
-  color:white;
-  font-size:16px;
-  padding:8px 12px;
-}
-
-.search button{
-  width:52px;
-  height:52px;
-  border:0;
-  border-radius:50%;
-  background:linear-gradient(135deg,#ff32db,#7e32ff);
-  color:white;
-  font-size:28px;
-}
-
-/* Categories */
-.categories{
-  display:flex;
-  gap:10px;
-  overflow-x:auto;
-  padding-bottom:12px;
-}
-
-.category{
-  min-width:150px;
-  border:2px solid #3156c9;
-  border-radius:30px;
-  padding:12px 18px;
-  text-align:center;
-  color:white;
-  background:#07102d;
-}
-
-/* Cards */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:18px;
-}
-
-.card{
-  min-height:190px;
-  border-radius:28px;
-  padding:20px;
-  position:relative;
-  overflow:hidden;
-  border:2px solid;
-  box-shadow:0 0 20px #000;
-}
-
-.card h2{
-  font-size:20px;
-  margin-bottom:8px;
-}
-
-.card p{
-  font-size:14px;
-  line-height:1.6;
-}
-
-.card .icon{
-  width:58px;
-  height:58px;
-  border-radius:18px;
-  background:#ffffff22;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:30px;
-  margin-bottom:12px;
-}
-
-.blue{
-  border-color:#00d9ff;
-  background:linear-gradient(135deg,#064d9b,#101d78);
-}
-
-.pink{
-  border-color:#ff31e8;
-  background:linear-gradient(135deg,#8b0cbd,#35106e);
-}
-
-.orange{
-  border-color:#ffb000;
-  background:linear-gradient(135deg,#9b4c00,#692400);
-}
-
-.green{
-  border-color:#00eaa0;
-  background:linear-gradient(135deg,#007d67,#073e54);
-}
-
-.purple{
-  border-color:#b12cff;
-  background:linear-gradient(135deg,#48168d,#15106c);
-}
-
-.cyan{
-  border-color:#00cfff;
-  background:linear-gradient(135deg,#075c99,#102a7d);
-}
-
-.go{
-  position:absolute;
-  right:18px;
-  bottom:18px;
-  width:45px;
-  height:45px;
-  border-radius:50%;
-  border:0;
-  background:#ffffff22;
-  color:white;
-  font-size:25px;
-}
-
-/* Recent */
-.section-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin:28px 0 15px;
-}
-
-.section-title h2{
-  font-size:20px;
-}
-
-.projects{
-  display:flex;
-  gap:12px;
-  overflow-x:auto;
-}
-
-.project{
-  min-width:190px;
-  background:#07112d;
-  border-radius:15px;
-  overflow:hidden;
-  border:1px solid #223b78;
-}
-
-.project .pic{
-  height:115px;
-  background:linear-gradient(135deg,#5d257a,#1c69a0,#ff8a3d);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:45px;
-}
-
-.project .info{
-  padding:10px;
-}
-
-.project small{
-  color:#aaa;
-}
-
-/* Bottom Nav */
-.bottom{
-  position:fixed;
-  bottom:0;
-  left:0;
-  width:100%;
-  height:78px;
-  background:#06102b;
-  border-top:2px solid #1a5eff;
-  display:flex;
-  justify-content:space-around;
-  align-items:center;
-  z-index:10;
-}
-
-.nav{
-  text-align:center;
-  color:#bbb;
-  font-size:12px;
-}
-
-.nav span{
-  display:block;
-  font-size:28px;
-  margin-bottom:3px;
-}
-
-.nav.active{
-  color:#00eaff;
-}
-
-.plus{
-  width:68px;
-  height:68px;
-  border-radius:50%;
-  background:linear-gradient(135deg,#00eaff,#d000ff);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:40px;
-  margin-top:-28px;
-  border:5px solid #091331;
-}
-
-/* Responsive */
-@media(max-width:600px){
-  .grid{
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-  }
-
-  .card{
-    min-height:205px;
-    padding:14px;
-  }
-
-  .card h2{
-    font-size:17px;
-  }
-
-  .logo h1{
-    font-size:25px;
-  }
-
-  .category{
-    min-width:125px;
-    padding:10px;
-  }
-}
-</style>
-</head>
-
-<body>
-
-<div class="container">
-
-  <div class="header">
-    <div class="menu">☰</div>
-
-    <div class="logo">
-      <h1>PT & AI Studio</h1>
-      <p>Create Your Story with AI</p>
-    </div>
-
-    <div class="vip">👑</div>
-    <div class="profile">◯</div>
-  </div>
-
-  <div class="search">
-    <input id="prompt" type="text"
-      placeholder="သင်လိုချင်တာကို / အိုင်ဒီယာကို ရေးလိုက်ပါ...">
-    <button onclick="generate()">➜</button>
-  </div>
-
-  <div class="categories">
-    <div class="category">🔥 လူကြိုက်များ</div>
-    <div class="category">⭐ အသစ်များ</div>
-    <div class="category">💗 နာမည်ကြီး Tools</div>
-    <div class="category">✨ AI Tools များ</div>
-  </div>
-
-  <div class="grid">
-
-    <div class="card blue" onclick="openTool('AI Image')">
-      <div class="icon">🖼️</div>
-      <h2>AI ပုံဖန်တီးခြင်း</h2>
-      <p>AI Image<br>စာရေးပြီး ပုံဖန်တီးပါ</p>
-      <button class="go">➜</button>
-    </div>
-
-    <div class="card pink" onclick="openTool('Image to Video')">
-      <div class="icon">🎞️</div>
-      <h2>ပုံမှ ဗီဒီယိုပြောင်းခြင်း</h2>
-      <p>Image to Video<br>ပုံတစ်ပုံကို ဗီဒီယိုပြောင်းပါ</p>
-      <button class="go">➜</button>
-    </div>
-
-    <div class="card orange" onclick="openTool('Text to Video')">
-      <div class="icon">T</div>
-      <h2>စာသားမှ ဗီဒီယိုဖန်တီးခြင်း</h2>
-      <p>Text to Video<br>စာရေးပြီး ဗီဒီယိုဖန်တီးပါ</p>
-      <button class="go">➜</button>
-    </div>
-
-    <div class="card green" onclick="openTool('AI Voice')">
-      <div class="icon">🎙️</div>
-      <h2>AI အသံ</h2>
-      <p>AI Voice<br>မြန်မာဘာသာဖြင့် အသံဖန်တီးပါ</p>
-      <button class="go">➜</button>
-    </div>
-
-    <div class="card purple" onclick="openTool('Music & SFX')">
-      <div class="icon">🎵</div>
-      <h2>သီချင်း / အသံအကျိုးသက်ရောက်မှု</h2>
-      <p>Music & SFX<br>သီချင်းနှင့် အသံများဖန်တီးပါ</p>
-      <button class="go">➜</button>
-    </div>
-
-    <div class="card cyan" onclick="openTool('My Projects')">
-      <div class="icon">📁</div>
-      <h2>ကျွန်ုပ်၏ ပရောဂျက်များ</h2>
-      <p>My Projects<br>ဖန်တီးထားသော အလုပ်များကို သိမ်းဆည်းပါ</p>
-      <button class="go">➜</button>
-    </div>
-
-  </div>
-
-  <div class="section-title">
-    <h2>⭐ နောက်ဆုံးဖန်တီးထားသောများ</h2>
-    <span>အားလုံးကြည့်ရန် ›</span>
-  </div>
-
-  <div class="projects">
-
-    <div class="project">
-      <div class="pic">💑</div>
-      <div class="info">
-        <b>ချစ်ခြင်းမေတ္တာ</b><br>
-        <small>2025-09-09</small>
-      </div>
-    </div>
-
-    <div class="project">
-      <div class="pic">👩🏻</div>
-      <div class="info">
-        <b>AI ပုံ</b><br>
-        <small>2025-09-08</small>
-      </div>
-    </div>
-
-    <div class="project">
-      <div class="pic">🏰</div>
-      <div class="info">
-        <b>Fantasy Video</b><br>
-        <small>2025-09-07</small>
-      </div>
-    </div>
-
-    <div class="project">
-      <div class="pic">🐱</div>
-      <div class="info">
-        <b>ကြောင်လေး</b><br>
-        <small>2025-09-06</small>
-      </div>
-    </div>
-
-    <div class="project">
-      <div class="pic">🌅</div>
-      <div class="info">
-        <b>သဘာဝအလှ</b><br>
-        <small>2025-09-05</small>
-      </div>
-    </div>
-
-  </div>
-
-</div>
-
-<div class="bottom">
-
-  <div class="nav active" onclick="home()">
-    <span>🏠</span>
-    ပင်မစာမျက်နှာ
-  </div>
-
-  <div class="nav">
-    <span>◈</span>
-    ရှာဖွေမည်
-  </div>
-
-  <div class="plus" onclick="newProject()">+</div>
-
-  <div class="nav">
-    <span>▣</span>
-    တက်ကြွမှု
-  </div>
-
-  <div class="nav">
-    <span>♙</span>
-    ကိုယ်ရေးအချက်အလက်
-  </div>
-
+  <button class="active" onclick="home()">🏠<br>Home</button>
+  <button onclick="showInfo()">✨<br>AI</button>
+  <button onclick="showInfo()">📁<br>Projects</button>
+  <button onclick="showInfo()">⚙️<br>Settings</button>
 </div>
 
 <script>
 
 function generate(){
-  const text=document.getElementById("prompt").value.trim();
 
-  if(text===""){
-    alert("ကျေးဇူးပြု၍ သင်လိုချင်တာကို ရေးပါ။");
+  const prompt =
+    document.getElementById("prompt").value.trim();
+
+  const message =
+    document.getElementById("message");
+
+  const result =
+    document.getElementById("result");
+
+  const resultText =
+    document.getElementById("resultText");
+
+  if(!prompt){
+
+    message.textContent =
+      "AI ကို လုပ်ခိုင်းချင်တဲ့အကြောင်းအရာကို အရင်ရေးပါ ✨";
+
+    message.style.display="block";
+    result.style.display="none";
     return;
   }
 
-  alert("AI က ဖန်တီးနေပါတယ်...\n\n" + text);
+  message.style.display="none";
+
+  resultText.textContent =
+    "သင်ရေးထားတဲ့ \"" +
+    prompt +
+    "\" အတွက် AI လုပ်ဆောင်ချက်ကို စတင်နိုင်ပါပြီ ✨";
+
+  result.style.display="block";
+
+  result.scrollIntoView({
+    behavior:"smooth"
+  });
 }
 
-function openTool(tool){
-  alert(tool + " ကို ဖွင့်နေပါတယ်...");
+
+function openTool(name){
+
+  const result =
+    document.getElementById("result");
+
+  const resultText =
+    document.getElementById("resultText");
+
+  resultText.textContent =
+    name +
+    " ကို ရွေးထားပါတယ်။ အပေါ်က Prompt Box မှာ လိုချင်တာကို ရေးပြီး Generate ကိုနှိပ်ပါ ✨";
+
+  result.style.display="block";
+
+  result.scrollIntoView({
+    behavior:"smooth"
+  });
 }
+
 
 function newProject(){
-  alert("Project အသစ်စတင်ရန် ပြင်ဆင်နေပါတယ်...");
+
+  document
+    .getElementById("prompt")
+    .focus();
+
 }
 
+
 function home(){
+
   window.scrollTo({
     top:0,
     behavior:"smooth"
   });
+
+}
+
+
+function showInfo(){
+
+  const message =
+    document.getElementById("message");
+
+  message.textContent =
+    "ဒီ Feature ကို PT & AI Studio မှာ ဆက်လက်ထည့်သွင်းနိုင်ပါတယ် ✨";
+
+  message.style.display="block";
 }
 
 </script>
