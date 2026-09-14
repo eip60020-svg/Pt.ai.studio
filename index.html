@@ -193,16 +193,24 @@ h2{
   <div class="subtitle">
     AI နဲ့ ဖန်တီးမှုတွေကို လွယ်ကူစွာလုပ်လိုက်ပါ ✨
   </div>
-</header>
+</header><div class="search">
+  <input
+    id="prompt"
+    type="text"
+    placeholder="AI ကို ဘာလုပ်ခိုင်းချင်လဲ?"
+  >
+  <button onclick="generate()">
+    Generate ✨  </button>
+</div>
 
-  <div class="search">
-    <input
-      id="prompt"
-      type="text"
-      placeholder="AI ကို ဘာလုပ်ခိုင်းချင်လဲ?>
-    <button onclick="generate()">
-      Generate ✨
-    </button>
+<div id="message" class="message"></div>
+
+<div id="result" style="display:none;">
+  <div id="resultText"></div>
+</div>
+  </button>
+</div>
+
 <div id="message" class="message"></div>
 
 <div id="result" style="display:none;">
