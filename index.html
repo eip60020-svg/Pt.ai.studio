@@ -203,10 +203,11 @@ h2{
     <button onclick="generate()">
       Generate ✨
     </button>
+<div id="message" class="message"></div>
 
-    <div id="message" class="message"></div>
-  </div>
-
+<div id="result" style="display:none;">
+  <div id="resultText"></div>
+</div>
   <h2>AI Tools</h2>
 
   <div class="grid">
@@ -264,85 +265,20 @@ h2{
 </div>
 
 <script>
-
 function generate(){
 
- const prompt =
-    document.getElementById("prompt").value.trim();
-
-  const message =
-    document.getElementById("message");
-
-  const result =
-    document.getElementById("result");
-
-  const resultText =
-    document.getElementById("resultText");
+  const prompt = document.getElementById("prompt").value.trim();
+  const message = document.getElementById("message");
 
   if(!prompt){
-
-    message.textContent =
-      "AI ကို လိုချင်တာအကြောင်းအရာကို အရင်ရေးပေးပါ ✨";
-
-    message.style.display="block";
-    result.style.display="none";
+    message.textContent = "AI ကို လိုချင်တာကို အရင်ရေးပေးပါ ✨";
+    message.style.display = "block";
     return;
   }
 
-  message.style.display="none";
-
-  resultText.textContent =
-    "သင်ရေးထားတာ \"" +
-    prompt +
-    "\" အတွက် AI လုပ်ဆောင်ချက်ကို စတင်နေပါပြီ ✨";
-
-  result.style.display="block";
-
-  result.scrollIntoView({
-    behavior:"smooth"
-  });
+  message.textContent = "သင်ရေးထားတာ 👉 " + prompt + " ✨";
+  message.style.display = "block";
 }
-
-
-function openTool(name){
-
-  const result =
-    document.getElementById("result");
-
-  const resultText =
-    document.getElementById("resultText");
-
-  resultText.textContent =
-    name +
-    " ကို ရွေးထားပါတယ်။ အပေါ်က Prompt Box မှာ လိုချင်တာကို ရေးပြီး Generate ကိုနှိပ်ပါ ✨";
-
-  result.style.display="block";
-
-  result.scrollIntoView({
-    behavior:"smooth"
-  });
-}
-
-
-function newProject(){
-
-  document
-    .getElementById("prompt")
-    .focus();
-
-}
-
-
-function home(){
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
-}
-
-
 function showInfo(){
 
   const message =
