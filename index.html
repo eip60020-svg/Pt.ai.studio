@@ -279,6 +279,16 @@ function showInfo(){
     "ဒီ Feature ကို PT & AI Studio မှာ ဆက်လက်ထည့်သွင်းနိုင်ပါတယ် ✨";
 
   message.style.display="block";
+}function openTool(tool){
+  const message = document.getElementById("message");
+  message.textContent = tool + " ကို ဖွင့်လိုက်ပါပြီ ✨";
+  message.style.display = "block";
+}
+
+function home(){
+  const message = document.getElementById("message");
+  message.textContent = "PT & AI Studio Home 🏠";
+  message.style.display = "block";
 }
 
 </script>
